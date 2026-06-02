@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="زيارة متحف أرض اللبان — الموقع، الساعات، المعرض، التواصل.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>الزيارة — متحف أرض اللبان</title>
+</head>
+<body class="lang-rtl" data-page="visit">
+    <a href="#main" class="skip-link" data-i18n="skip">تخطي إلى المحتوى</a>
+
+    <div class="language-toggle" role="group" aria-label="Language">
+        <a href="#" class="lang-btn active" data-lang="ar" aria-current="true">ع</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+        <a href="#" class="lang-btn" data-lang="de">DE</a>
+        <a href="#" class="lang-btn" data-lang="fr">FR</a>
+        <a href="#" class="lang-btn" data-lang="it">IT</a>
+    </div>
+
+    <header class="navbar" role="banner">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-mark" aria-hidden="true">🌿</span>
+                <span class="logo-text">
+                    <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
+                    <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
+                </span>
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                    <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
+                    <li><a href="visit.html" class="active" data-i18n="nav.visit">الزيارة</a></li>
+                    <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-overlay" aria-hidden="true"></div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="container">
+                <h1 data-i18n="page.visit">الزيارة والتواصل</h1>
+            </div>
+        </section>
+
+        <section class="visiting">
+            <div class="container">
+                <header class="section-header reveal">
+                    <span class="section-tag" data-i18n="visit.tag">الزيارة</span>
+                    <h2 data-i18n="visit.title">خطط زيارتك</h2>
+                </header>
+                <div class="visiting-grid">
+                    <div class="visit-card reveal">
+                        <div class="visit-card-icon" aria-hidden="true">📍</div>
+                        <h3 data-i18n="visit.loc">الموقع</h3>
+                        <p data-html="true" data-i18n="visit.loc.v">منتزه البليد الأثري</p>
+                    </div>
+                    <div class="visit-card reveal">
+                        <div class="visit-card-icon" aria-hidden="true">🕐</div>
+                        <h3 data-i18n="visit.hours">ساعات العمل</h3>
+                        <p data-html="true" data-i18n="visit.hours.v">الأحد — الخميس</p>
+                    </div>
+                    <div class="visit-card reveal">
+                        <div class="visit-card-icon" aria-hidden="true">🎟️</div>
+                        <h3 data-i18n="visit.tickets">تذاكر الدخول</h3>
+                        <p data-html="true" data-i18n="visit.tickets.v">2 ريال عماني</p>
+                        <a href="tickets.html" class="visit-card-link" data-i18n="hero.cta.tickets">احجز تذكرة</a>
+                    </div>
+                    <div class="visit-card reveal">
+                        <div class="visit-card-icon" aria-hidden="true">👥</div>
+                        <h3 data-i18n="visit.services">الخدمات</h3>
+                        <p data-html="true" data-i18n="visit.services.v">جولات إرشادية</p>
+                    </div>
+                    <div class="visit-card reveal">
+                        <div class="visit-card-icon" aria-hidden="true">♿</div>
+                        <h3 data-i18n="visit.access">التسهيلات</h3>
+                        <p data-html="true" data-i18n="visit.access.v">مواقف سيارات</p>
+                    </div>
+                    <div class="visit-card reveal">
+                        <div class="visit-card-icon" aria-hidden="true">🚌</div>
+                        <h3 data-i18n="visit.transport">المواصلات</h3>
+                        <p data-html="true" data-i18n="visit.transport.v">سيارة أجرة</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <div class="container">
+                <header class="section-header reveal">
+                    <span class="section-tag" data-i18n="map.tag">الموقع</span>
+                    <h2 data-i18n="map.title">كيف تصل إلى المتحف</h2>
+                </header>
+                <div class="map-wrapper">
+                    <div class="map-container map-lazy reveal" data-src="https://maps.google.com/maps?q=17.00936,54.13611&z=15&output=embed" data-title="Museum location"></div>
+                    <aside class="map-info reveal">
+                        <h3 data-i18n="map.info">معلومات الموقع</h3>
+                        <p><strong data-i18n="map.address">العنوان:</strong> <span data-i18n="map.address.v">منتزه البليد</span></p>
+                        <p><strong data-i18n="map.coords">الإحداثيات:</strong> 17.00936° N, 54.13611° E</p>
+                        <p><strong data-i18n="map.from">من مركز صلالة:</strong> <span data-i18n="map.from.v">5 كم</span></p>
+                        <p><strong data-i18n="map.phone">الهاتف:</strong> <a href="tel:+96823388300">+968 2338 8300</a></p>
+                        <a class="map-link" href="https://www.google.com/maps?q=17.00936,54.13611" target="_blank" rel="noopener noreferrer" data-i18n="map.open">خرائط Google</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="container">
+                <header class="section-header reveal">
+                    <span class="section-tag" data-i18n="video.tag">الفيديو</span>
+                    <h2 data-i18n="video.title">طريق اللبان</h2>
+                    <p data-i18n="video.intro">وثائقي عن طريق التجارة</p>
+                </header>
+                <div class="video-container reveal">
+                    <button type="button" class="video-facade" data-video-id="Zy-JTXwpgGQ" aria-label="Play video">
+                        <img src="https://i.ytimg.com/vi/Zy-JTXwpgGQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                        <span class="video-facade-play" data-i18n="video.play">تشغيل الفيديو</span>
+                    </button>
+                </div>
+                <p class="video-note" data-i18n="video.note">BBC</p>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="container">
+                <header class="section-header reveal">
+                    <span class="section-tag" data-i18n="gallery.tag">المعرض</span>
+                    <h2 data-i18n="gallery.title">صور من المتحف</h2>
+                </header>
+                <div class="gallery-grid gallery-grid--compact">
+                    <figure class="gallery-item reveal">
+                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_entrata.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <figcaption data-i18n="gallery.entrance">مدخل المتحف</figcaption>
+                    </figure>
+                    <figure class="gallery-item reveal">
+                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_cortile_01.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <figcaption data-i18n="gallery.court">فناء المتحف</figcaption>
+                    </figure>
+                    <figure class="gallery-item reveal">
+                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_interno,_sezione_navale_02.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <figcaption data-i18n="gallery.sea">قاعة البحر</figcaption>
+                    </figure>
+                    <figure class="gallery-item reveal">
+                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_stele_atterrata.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <figcaption data-i18n="gallery.site">آثار في الموقع</figcaption>
+                    </figure>
+                </div>
+                <p class="gallery-credit" data-i18n="gallery.credit">ويكيميديا كومنز</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="container">
+                <header class="section-header reveal">
+                    <span class="section-tag" data-i18n="contact.tag">التواصل</span>
+                    <h2 data-i18n="contact.title">تواصل معنا</h2>
+                </header>
+                <div class="contact-content">
+                    <div class="contact-info reveal">
+                        <h3 data-i18n="contact.info">معلومات التواصل</h3>
+                        <p><strong data-i18n="map.phone">الهاتف:</strong> <a href="tel:+96823388300">+968 2338 8300</a></p>
+                        <p><strong data-i18n="contact.location">الموقع:</strong> <span data-i18n="contact.location.v">البليد</span></p>
+                        <h3 style="margin-top: 28px;" data-i18n="contact.links">روابط مفيدة</h3>
+                        <div class="social-links">
+                            <a href="https://whc.unesco.org/en/list/1010/" class="social-btn" target="_blank" rel="noopener noreferrer">UNESCO</a>
+                            <a href="https://experienceoman.om/" class="social-btn" target="_blank" rel="noopener noreferrer" data-i18n="contact.oman">عُمان</a>
+                            <a href="https://www.google.com/maps?q=17.00936,54.13611" class="social-btn" target="_blank" rel="noopener noreferrer" data-i18n="contact.map">الخريطة</a>
+                        </div>
+                    </div>
+                    <form class="contact-form reveal" onsubmit="submitForm(event)" novalidate>
+                        <h3 data-i18n="contact.form">أرسل رسالة</h3>
+                        <input type="text" name="name" required data-i18n-placeholder="form.name" placeholder="اسمك">
+                        <input type="email" name="email" required data-i18n-placeholder="form.email" placeholder="بريدك">
+                        <input type="text" name="subject" required data-i18n-placeholder="form.subject" placeholder="الموضوع">
+                        <textarea name="message" rows="5" required data-i18n-placeholder="form.message" placeholder="رسالتك"></textarea>
+                        <button type="submit" class="submit-btn" data-i18n="contact.send">إرسال</button>
+                        <p class="form-status" hidden role="status"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p class="logo-title" data-i18n="logo.title">متحف أرض اللبان</p>
+                    <p data-i18n="footer.brand">ضمن موقع التراث العالمي لليونسكو</p>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.explore">استكشف</h4>
+                    <ul>
+                        <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
+                        <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> <span data-i18n="footer.rights">متحف أرض اللبان</span></p>
+                <p data-i18n="footer.country">سلطنة عُمان 🇴🇲</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" hidden role="dialog" aria-modal="true">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content">
+            <button type="button" class="lightbox-close">&times;</button>
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <script src="i18n.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

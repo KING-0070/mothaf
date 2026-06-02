@@ -6,8 +6,13 @@ const LANG_CONFIG = {
     ar: { dir: 'rtl', label: 'العربية' },
     en: { dir: 'ltr', label: 'English' },
     de: { dir: 'ltr', label: 'Deutsch' },
-    fr: { dir: 'ltr', label: 'Français' }
+    fr: { dir: 'ltr', label: 'Français' },
+    it: { dir: 'ltr', label: 'Italiano' }
 };
+
+function t(key, lang = currentLanguage) {
+    return I18N[lang]?.[key] ?? I18N.ar?.[key] ?? '';
+}
 
 function changeLanguage(lang, triggerEl) {
     if (!LANG_CONFIG[lang]) return;
@@ -15,6 +20,7 @@ function changeLanguage(lang, triggerEl) {
 
     document.querySelectorAll('.lang-btn').forEach((btn) => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-current', btn.dataset.lang === lang ? 'true' : 'false');
     });
 
     const { dir } = LANG_CONFIG[lang];
@@ -33,8 +39,9 @@ function changeLanguage(lang, triggerEl) {
 }
 
 function updatePageText(lang) {
-    document.querySelectorAll('[data-ar]').forEach((element) => {
-        const text = element.getAttribute(`data-${lang}`);
+    document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.dataset.i18n;
+        const text = t(key, lang);
         if (!text) return;
 
         if (element.dataset.html === 'true') {
@@ -44,28 +51,27 @@ function updatePageText(lang) {
         }
     });
 
-    document.querySelectorAll('[data-placeholder-ar]').forEach((element) => {
-        const placeholder = element.getAttribute(`data-placeholder-${lang}`);
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+        const key = element.dataset.i18nPlaceholder;
+        const placeholder = t(key, lang);
         if (placeholder) element.placeholder = placeholder;
+    });
+
+    document.querySelectorAll('[data-i18n-option]').forEach((element) => {
+        const key = element.dataset.i18nOption;
+        const label = t(key, lang);
+        if (label) element.textContent = label;
     });
 
     const navToggle = document.querySelector('.nav-toggle');
     if (navToggle) {
-        const label = navToggle.getAttribute(`data-label-${lang}`);
-        if (label) navToggle.setAttribute('aria-label', label);
+        navToggle.setAttribute('aria-label', t('nav.open', lang));
     }
 }
 
 function submitForm(event) {
     event.preventDefault();
     const form = event.target;
-    const messages = {
-        ar: 'شكراً لك! سيتم فتح بريدك الإلكتروني لإرسال الرسالة.',
-        en: 'Thank you! Your email client will open to send the message.',
-        de: 'Danke! Ihr E-Mail-Programm wird zum Senden geöffnet.',
-        fr: 'Merci ! Votre client e-mail s’ouvrira pour envoyer le message.'
-    };
-
     const name = form.querySelector('[name="name"]')?.value || '';
     const email = form.querySelector('[name="email"]')?.value || '';
     const subject = form.querySelector('[name="subject"]')?.value || '';
@@ -76,13 +82,37 @@ function submitForm(event) {
 
     const status = form.querySelector('.form-status');
     if (status) {
-        status.textContent = messages[currentLanguage];
+        status.textContent = t('form.thanks');
         status.hidden = false;
     }
     form.reset();
 }
 
-/* Mobile navigation */
+function submitTicketForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const date = form.querySelector('[name="date"]')?.value || '';
+    const time = form.querySelector('[name="time"]')?.value || '';
+    const adults = form.querySelector('[name="adults"]')?.value || '1';
+    const children = form.querySelector('[name="children"]')?.value || '0';
+    const name = form.querySelector('[name="name"]')?.value || '';
+    const email = form.querySelector('[name="email"]')?.value || '';
+    const phone = form.querySelector('[name="phone"]')?.value || '';
+    const notes = form.querySelector('[name="notes"]')?.value || '';
+
+    const body = encodeURIComponent(
+        `Ticket booking request\n\nDate: ${date}\nTime: ${time}\nAdults: ${adults}\nChildren: ${children}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nNotes:\n${notes}`
+    );
+    const mailSubject = encodeURIComponent(`Museum tickets — ${date}`);
+    window.location.href = `mailto:info@oman.om?subject=${mailSubject}&body=${body}`;
+
+    const status = form.querySelector('.form-status');
+    if (status) {
+        status.textContent = t('tickets.thanks');
+        status.hidden = false;
+    }
+}
+
 function initNavigation() {
     const toggle = document.querySelector('.nav-toggle');
     const nav = document.querySelector('.nav-links');
@@ -121,7 +151,6 @@ function initNavigation() {
     });
 }
 
-/* Navbar scroll state */
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
@@ -133,7 +162,6 @@ function initNavbarScroll() {
     window.addEventListener('scroll', onScroll, { passive: true });
 }
 
-/* Scroll reveal */
 function initScrollReveal() {
     const observer = new IntersectionObserver(
         (entries) => {
@@ -149,12 +177,11 @@ function initScrollReveal() {
 
     document
         .querySelectorAll(
-            '.reveal, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card'
+            '.reveal, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card, .home-card'
         )
         .forEach((el) => observer.observe(el));
 }
 
-/* Gallery lightbox */
 function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -187,25 +214,74 @@ function initLightbox() {
     });
 }
 
-/* Smooth active nav link */
-function initActiveSection() {
-    const sections = document.querySelectorAll('section[id]');
-    const links = document.querySelectorAll('.nav-links a');
+function initActiveNav() {
+    const page = document.body.dataset.page;
+    if (!page) return;
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        link.classList.toggle('active', href.includes(page));
+    });
+}
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                const id = entry.target.getAttribute('id');
-                links.forEach((link) => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-                });
-            });
-        },
-        { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    );
+function initVideoFacade() {
+    const facade = document.querySelector('.video-facade');
+    if (!facade) return;
 
-    sections.forEach((section) => observer.observe(section));
+    const videoId = facade.dataset.videoId || 'Zy-JTXwpgGQ';
+    const play = () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        iframe.title = 'The Frankincense Trail';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute(
+            'allow',
+            'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+        );
+        iframe.setAttribute('loading', 'lazy');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        facade.replaceWith(iframe);
+        iframe.className = 'video-iframe';
+    };
+
+    facade.addEventListener('click', play);
+    facade.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            play();
+        }
+    });
+}
+
+function initLazyMap() {
+    const map = document.querySelector('.map-lazy');
+    if (!map || map.dataset.loaded === 'true') return;
+
+    const load = () => {
+        if (map.dataset.loaded === 'true') return;
+        const iframe = document.createElement('iframe');
+        iframe.src = map.dataset.src;
+        iframe.title = map.dataset.title || 'Map';
+        iframe.setAttribute('loading', 'lazy');
+        iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        iframe.setAttribute('allowfullscreen', '');
+        map.appendChild(iframe);
+        map.dataset.loaded = 'true';
+    };
+
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    load();
+                    obs.disconnect();
+                }
+            },
+            { rootMargin: '200px' }
+        );
+        obs.observe(map);
+    } else {
+        load();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -233,7 +309,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initScrollReveal();
     initLightbox();
-    initActiveSection();
+    initActiveNav();
+    initVideoFacade();
+    initLazyMap();
+    initTicketDateMin();
 
     document.getElementById('year')?.append(new Date().getFullYear().toString());
 });
+
+function initTicketDateMin() {
+    const dateInput = document.querySelector('.tickets-form [name="date"]');
+    if (!dateInput) return;
+    const today = new Date().toISOString().slice(0, 10);
+    dateInput.min = today;
+}

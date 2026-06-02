@@ -184,7 +184,7 @@ function initScrollReveal() {
 
     document
         .querySelectorAll(
-            '.reveal, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card, .home-card'
+            '.reveal, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card, .home-card, .tickets-info, .tickets-form'
         )
         .forEach((el) => observer.observe(el));
 }

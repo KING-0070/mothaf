@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="حجز تذاكر متحف أرض اللبان — منتزه البليد الأثري، صلالة.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>حجز التذاكر — متحف أرض اللبان</title>
+</head>
+<body class="lang-rtl" data-page="tickets">
+    <a href="#main" class="skip-link" data-i18n="skip">تخطي إلى المحتوى</a>
+
+    <div class="language-toggle" role="group" aria-label="Language">
+        <a href="#" class="lang-btn active" data-lang="ar" aria-current="true">ع</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+        <a href="#" class="lang-btn" data-lang="de">DE</a>
+        <a href="#" class="lang-btn" data-lang="fr">FR</a>
+        <a href="#" class="lang-btn" data-lang="it">IT</a>
+    </div>
+
+    <header class="navbar" role="banner">
+        <div class="container">
+            <div class="site-brand">
+                <span class="logo-mark" aria-hidden="true">🌿</span>
+                <div class="site-brand-col">
+                    <a href="index.html" class="logo logo--text">
+                        <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
+                        <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
+                    </a>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="رؤية عُمان 2040" data-i18n-alt="vision2040.alt" width="180" height="48" loading="lazy" decoding="async">
+                    </a>
+                </div>
+            </div>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                    <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
+                    <li><a href="visit.html" data-i18n="nav.visit">الزيارة</a></li>
+                    <li><a href="tickets.html" class="active" data-i18n="nav.tickets">التذاكر</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-overlay" aria-hidden="true"></div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero page-hero--tickets">
+            <div class="container">
+                <span class="section-tag" data-i18n="tickets.tag">حجز التذاكر</span>
+                <h1 data-i18n="tickets.title">احجز زيارتك</h1>
+                <p class="page-hero-lead" data-i18n="tickets.lead">احجز تذكرة الدخول مسبقاً</p>
+            </div>
+        </section>
+
+        <section class="tickets-section">
+            <div class="container tickets-layout">
+                <aside class="tickets-info reveal">
+                    <div class="tickets-price-card">
+                        <h3 data-i18n="tickets.price">السعر التقريبي</h3>
+                        <p class="tickets-price-value" data-i18n="tickets.price.v">2 ريال عماني للشخص</p>
+                        <p class="tickets-hours-note" data-i18n="tickets.hours.note">ساعات العمل</p>
+                    </div>
+                    <ul class="tickets-tips">
+                        <li data-html="true" data-i18n="visit.tickets.v">يشمل المنتزه الأثري</li>
+                        <li data-html="true" data-i18n="visit.hours.v">الأحد — الخميس 9–21</li>
+                    </ul>
+                    <a href="visit.html" class="cta-btn tickets-info-link" data-i18n="hero.cta.visit">خطط زيارتك</a>
+                </aside>
+
+                <form class="tickets-form reveal" onsubmit="submitTicketForm(event)" novalidate>
+                    <div class="form-row">
+                        <label>
+                            <span data-i18n="tickets.date">تاريخ الزيارة</span>
+                            <input type="date" name="date" required>
+                        </label>
+                        <label>
+                            <span data-i18n="tickets.time">الوقت المفضل</span>
+                            <select name="time" required>
+                                <option value="" data-i18n-option="tickets.select.time">اختر الوقت</option>
+                                <option value="morning" data-i18n-option="tickets.time.morning">صباحاً</option>
+                                <option value="afternoon" data-i18n-option="tickets.time.afternoon">بعد الظهر</option>
+                                <option value="evening" data-i18n-option="tickets.time.evening">مساءً</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            <span data-i18n="tickets.adults">عدد البالغين</span>
+                            <input type="number" name="adults" min="1" max="20" value="1" required>
+                        </label>
+                        <label>
+                            <span data-i18n="tickets.children">عدد الأطفال</span>
+                            <input type="number" name="children" min="0" max="20" value="0">
+                        </label>
+                    </div>
+                    <label>
+                        <span data-i18n="form.name">اسمك</span>
+                        <input type="text" name="name" required data-i18n-placeholder="form.name" placeholder="اسمك">
+                    </label>
+                    <label>
+                        <span data-i18n="form.email">بريدك الإلكتروني</span>
+                        <input type="email" name="email" required data-i18n-placeholder="form.email" placeholder="بريدك">
+                    </label>
+                    <label>
+                        <span data-i18n="tickets.phone">رقم الهاتف</span>
+                        <input type="tel" name="phone" required inputmode="tel" autocomplete="tel">
+                    </label>
+                    <label>
+                        <span data-i18n="tickets.notes">ملاحظات</span>
+                        <textarea name="notes" rows="3" data-i18n-placeholder="tickets.notes"></textarea>
+                    </label>
+                    <button type="submit" class="submit-btn submit-btn--large" data-i18n="tickets.submit">تأكيد الحجز</button>
+                    <p class="form-status" hidden role="status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p class="logo-title" data-i18n="logo.title">متحف أرض اللبان</p>
+                    <p data-i18n="footer.brand">ضمن موقع التراث العالمي لليونسكو</p>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge vision2040-badge--footer" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="رؤية عُمان 2040" data-i18n-alt="vision2040.alt" width="200" height="54" loading="lazy" decoding="async">
+                    </a>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.explore">استكشف</h4>
+                    <ul>
+                        <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
+                        <li><a href="visit.html" data-i18n="nav.visit">الزيارة</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> <span data-i18n="footer.rights">متحف أرض اللبان</span></p>
+                <p data-i18n="footer.country">سلطنة عُمان 🇴🇲</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="i18n.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

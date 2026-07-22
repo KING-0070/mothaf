@@ -19,8 +19,10 @@ function changeLanguage(lang, triggerEl) {
     currentLanguage = lang;
 
     document.querySelectorAll('.lang-btn').forEach((btn) => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-        btn.setAttribute('aria-current', btn.dataset.lang === lang ? 'true' : 'false');
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle('active', isActive);
+        if (isActive) btn.setAttribute('aria-current', 'true');
+        else btn.removeAttribute('aria-current');
     });
 
     const { dir } = LANG_CONFIG[lang];
@@ -57,6 +59,12 @@ function updatePageText(lang) {
         if (placeholder) element.placeholder = placeholder;
     });
 
+    document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
+        const key = element.dataset.i18nAlt;
+        const alt = t(key, lang);
+        if (alt) element.alt = alt;
+    });
+
     document.querySelectorAll('[data-i18n-option]').forEach((element) => {
         const key = element.dataset.i18nOption;
         const label = t(key, lang);
@@ -67,6 +75,16 @@ function updatePageText(lang) {
     if (navToggle) {
         navToggle.setAttribute('aria-label', t('nav.open', lang));
     }
+
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.setAttribute('aria-label', t('gallery.tag', lang));
+    }
+
+    const visionLang = lang === 'ar' ? 'ar' : 'en';
+    document.querySelectorAll('.vision2040-badge').forEach((link) => {
+        link.href = `https://www.oman2040.om/?lang=${visionLang}`;
+    });
 }
 
 function submitForm(event) {
@@ -162,7 +180,35 @@ function initNavbarScroll() {
     window.addEventListener('scroll', onScroll, { passive: true });
 }
 
+function initPageLoad() {
+    requestAnimationFrame(() => {
+        document.body.classList.add('is-loaded');
+    });
+}
+
+function initHeroStagger() {
+    document.querySelectorAll('.hero-stagger, .page-hero-stagger').forEach((el, i) => {
+        el.style.setProperty('--hero-i', String(i));
+    });
+}
+
+function applyRevealStagger() {
+    const gridSelectors =
+        '.unesco-grid, .home-cards-grid, .visiting-grid, .halls-grid, .exhibits-detailed, .gallery-grid, .gallery-grid--compact, .tickets-layout, .events-grid, .events-programs-grid';
+
+    document.querySelectorAll(gridSelectors).forEach((grid) => {
+        const items = grid.querySelectorAll(
+            '.reveal, .reveal-fade, .reveal-scale, .reveal-left, .reveal-right, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card, .home-card, .hall-card, .event-card, .event-program-card, .tickets-info, .tickets-form'
+        );
+        items.forEach((el, i) => {
+            el.style.setProperty('--reveal-delay', `${Math.min(i * 80, 400)}ms`);
+        });
+    });
+}
+
 function initScrollReveal() {
+    applyRevealStagger();
+
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -177,7 +223,7 @@ function initScrollReveal() {
 
     document
         .querySelectorAll(
-            '.reveal, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card, .home-card'
+            '.reveal, .reveal-fade, .reveal-scale, .reveal-left, .reveal-right, .visit-card, .gallery-item, .exhibit-detailed-card, .unesco-card, .home-card, .hall-card, .event-card, .event-program-card, .tickets-info, .tickets-form'
         )
         .forEach((el) => observer.observe(el));
 }
@@ -188,18 +234,49 @@ function initLightbox() {
     const lightboxCaption = document.getElementById('lightbox-caption');
     if (!lightbox || !lightboxImg) return;
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const open = (src, alt) => {
+        lightbox.classList.remove('is-closing');
         lightboxImg.src = src;
         lightboxImg.alt = alt || '';
         if (lightboxCaption) lightboxCaption.textContent = alt || '';
         lightbox.hidden = false;
         document.body.classList.add('lightbox-open');
+        if (!prefersReducedMotion) {
+            requestAnimationFrame(() => lightbox.classList.add('is-opening'));
+        }
     };
 
     const close = () => {
-        lightbox.hidden = true;
-        lightboxImg.src = '';
-        document.body.classList.remove('lightbox-open');
+        if (prefersReducedMotion || !lightbox.classList.contains('is-opening')) {
+            lightbox.hidden = true;
+            lightboxImg.src = '';
+            lightbox.classList.remove('is-opening', 'is-closing');
+            document.body.classList.remove('lightbox-open');
+            return;
+        }
+
+        lightbox.classList.remove('is-opening');
+        lightbox.classList.add('is-closing');
+
+        const finish = () => {
+            lightbox.hidden = true;
+            lightbox.classList.remove('is-closing');
+            lightboxImg.src = '';
+            document.body.classList.remove('lightbox-open');
+        };
+
+        const content = lightbox.querySelector('.lightbox-content');
+        let closed = false;
+        const onEnd = () => {
+            if (closed) return;
+            closed = true;
+            content?.removeEventListener('animationend', onEnd);
+            finish();
+        };
+        content?.addEventListener('animationend', onEnd);
+        setTimeout(onEnd, 280);
     };
 
     document.querySelectorAll('[data-lightbox]').forEach((img) => {
@@ -217,38 +294,11 @@ function initLightbox() {
 function initActiveNav() {
     const page = document.body.dataset.page;
     if (!page) return;
+    const targetFile = page === 'index' ? 'index.html' : `${page}.html`;
     document.querySelectorAll('.nav-links a').forEach((link) => {
         const href = link.getAttribute('href') || '';
-        link.classList.toggle('active', href.includes(page));
-    });
-}
-
-function initVideoFacade() {
-    const facade = document.querySelector('.video-facade');
-    if (!facade) return;
-
-    const videoId = facade.dataset.videoId || 'Zy-JTXwpgGQ';
-    const play = () => {
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-        iframe.title = 'The Frankincense Trail';
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.setAttribute(
-            'allow',
-            'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-        );
-        iframe.setAttribute('loading', 'lazy');
-        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-        facade.replaceWith(iframe);
-        iframe.className = 'video-iframe';
-    };
-
-    facade.addEventListener('click', play);
-    facade.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            play();
-        }
+        const file = href.split('/').pop() || href;
+        link.classList.toggle('active', file === targetFile);
     });
 }
 
@@ -285,6 +335,11 @@ function initLazyMap() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (typeof I18N === 'undefined') {
+        console.error('Museum site: i18n.js must load before script.js');
+        return;
+    }
+
     let savedLang = 'ar';
     try {
         savedLang = localStorage.getItem('museum-lang') || 'ar';
@@ -307,10 +362,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initNavigation();
     initNavbarScroll();
+    initPageLoad();
+    initHeroStagger();
     initScrollReveal();
     initLightbox();
     initActiveNav();
-    initVideoFacade();
     initLazyMap();
     initTicketDateMin();
 

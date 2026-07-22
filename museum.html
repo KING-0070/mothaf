@@ -15,22 +15,28 @@
     <a href="#main" class="skip-link" data-i18n="skip">تخطي إلى المحتوى</a>
 
     <div class="language-toggle" role="group" aria-label="Language">
-        <a href="#" class="lang-btn active" data-lang="ar" aria-current="true">ع</a>
-        <a href="#" class="lang-btn" data-lang="en">EN</a>
-        <a href="#" class="lang-btn" data-lang="de">DE</a>
-        <a href="#" class="lang-btn" data-lang="fr">FR</a>
-        <a href="#" class="lang-btn" data-lang="it">IT</a>
+        <button type="button" class="lang-btn active" data-lang="ar" aria-current="true">ع</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="it">IT</button>
     </div>
 
     <header class="navbar" role="banner">
         <div class="container">
-            <a href="index.html" class="logo">
+            <div class="site-brand">
                 <span class="logo-mark" aria-hidden="true">🌿</span>
-                <span class="logo-text">
-                    <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
-                    <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
-                </span>
-            </a>
+                <div class="site-brand-col">
+                    <a href="index.html" class="logo logo--text">
+                        <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
+                        <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
+                    </a>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
+                        <span class="vision2040-label" data-i18n="vision2040.label">رؤية عُمان 2040</span>
+                    </a>
+                </div>
+            </div>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
                 <span></span><span></span><span></span>
             </button>
@@ -39,6 +45,7 @@
                     <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
                     <li><a href="museum.html" class="active" data-i18n="nav.museum">المتحف</a></li>
                     <li><a href="visit.html" data-i18n="nav.visit">الزيارة</a></li>
+                    <li><a href="events.html" data-i18n="nav.events">الفعاليات</a></li>
                     <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
                 </ul>
             </nav>
@@ -49,7 +56,7 @@
     <main id="main">
         <section class="page-hero">
             <div class="container">
-                <h1 data-i18n="page.museum">المتحف</h1>
+                <h1 class="page-hero-stagger" data-i18n="page.museum">المتحف</h1>
             </div>
         </section>
 
@@ -61,7 +68,7 @@
                     <p data-i18n="about.intro">متحف أرض اللبان يقع داخل منتزه البليد الأثري</p>
                 </header>
                 <div class="about-content">
-                    <div class="about-text reveal">
+                    <div class="about-text reveal reveal-left">
                         <p data-i18n="about.p1">افتُتح المتحف عام 2007</p>
                         <p data-i18n="about.p2">كان البليد مركزاً تجارياً مهماً</p>
                         <h3 data-i18n="about.highlights">أبرز ما يقدّمه المتحف</h3>
@@ -73,11 +80,13 @@
                             <li data-i18n="about.f5">جولات إرشادية</li>
                         </ul>
                     </div>
-                    <div class="about-image reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_cortile_02_albero_di_incenso_al_centro.jpg?width=640"
-                            alt="Museum courtyard" width="640" height="480" loading="lazy" decoding="async"
+                    <div class="about-image reveal reveal-right">
+                        <img src="images/cortile_02_albero.jpg"
+                            alt="فناء المتحف وشجرة اللبان في الوسط"
+                            width="640" height="480" loading="lazy" decoding="async"
+                            data-i18n-alt="img.alt.court"
                             data-lightbox
-                            data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_cortile_02_albero_di_incenso_al_centro.jpg?width=1200">
+                            data-full="images/cortile_02_albero.jpg">
                     </div>
                 </div>
             </div>
@@ -91,17 +100,73 @@
                 </header>
                 <div class="halls-grid">
                     <article class="hall-card reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_interno,_sezione_archeologica_01.jpg?width=480" alt="" width="480" height="320" loading="lazy" decoding="async">
+                        <img src="images/sezione_archeologica_01.jpg" alt="معروضات قاعة الآثار والتاريخ" width="480" height="320" loading="lazy" decoding="async" data-i18n-alt="img.alt.arch">
                         <div class="hall-card-body">
                             <h3 data-i18n="halls.history">قاعة التاريخ</h3>
-                            <p data-i18n="halls.history.desc">ستة أقسام</p>
+                            <p class="hall-intro" data-i18n="halls.history.intro">ستة أقسام تستعرض مسيرة عُمان من الجغرافيا إلى النهضة.</p>
+                            <ul class="hall-sections">
+                                <li>
+                                    <strong data-i18n="halls.history.s1">جغرافية عُمان</strong>
+                                    <span data-i18n="halls.history.s1.d">خرائط وصور للمناطق والمدن والبيئات العمانية.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.history.s2">عُمان قديماً</strong>
+                                    <span data-i18n="halls.history.s2.d">أدلة أثرية وثقافية لمراكز الاستيطان عبر العصور.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.history.s3">أرض اللبان</strong>
+                                    <span data-i18n="halls.history.s3.d">أهمية ظفار كمصدر تاريخي لأجود أنواع اللبان.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.history.s4">إسلام أهل عُمان</strong>
+                                    <span data-i18n="halls.history.s4.d">دخول الإسلام إلى عُمان وأثره في المجتمع والثقافة.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.history.s5">فصول التاريخ العماني</strong>
+                                    <span data-i18n="halls.history.s5.d">محطات بارزة من تاريخ عُمان عبر العصور.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.history.s6">النهضة</strong>
+                                    <span data-i18n="halls.history.s6.d">مسيرة النهضة الحديثة وأبرز معالمها في السلطنة.</span>
+                                </li>
+                            </ul>
                         </div>
                     </article>
                     <article class="hall-card reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_interno,_sezione_navale_01.jpg?width=480" alt="" width="480" height="320" loading="lazy" decoding="async">
+                        <img src="images/sezione_navale_01.jpg" alt="نماذج السفن في قاعة البحر" width="480" height="320" loading="lazy" decoding="async" data-i18n-alt="img.alt.sea">
                         <div class="hall-card-body">
                             <h3 data-i18n="halls.maritime">قاعة البحر</h3>
-                            <p data-i18n="halls.maritime.desc">سبعة أقسام</p>
+                            <p class="hall-intro" data-i18n="halls.maritime.intro">سبعة أقسام عن علاقة عُمان بالبحر والتجارة وبناء السفن.</p>
+                            <ul class="hall-sections">
+                                <li>
+                                    <strong data-i18n="halls.maritime.s1">الإرث البحري</strong>
+                                    <span data-i18n="halls.maritime.s1.d">أبرز المحطات البحرية في التاريخ العماني.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.maritime.s2">البحر</strong>
+                                    <span data-i18n="halls.maritime.s2.d">علاقة عُمان بالبحر وبيئته الطبيعية.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.maritime.s3">بناء السفن</strong>
+                                    <span data-i18n="halls.maritime.s3.d">مهارات صناعة السفن التقليدية ونماذجها.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.maritime.s4">الملاحة</strong>
+                                    <span data-i18n="halls.maritime.s4.d">فنون الملاحة وأدوات الإبحار العمانية.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.maritime.s5">التجارة</strong>
+                                    <span data-i18n="halls.maritime.s5.d">دور البحر في تطوير علاقات التجارة مع العالم.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.maritime.s6">البحر الافتراضي</strong>
+                                    <span data-i18n="halls.maritime.s6.d">تجربة تفاعلية بتقنية الواقع الافتراضي.</span>
+                                </li>
+                                <li>
+                                    <strong data-i18n="halls.maritime.s7">النهضة</strong>
+                                    <span data-i18n="halls.maritime.s7.d">تطور القطاع البحري في عهد النهضة الحديثة.</span>
+                                </li>
+                            </ul>
                         </div>
                     </article>
                 </div>
@@ -122,7 +187,7 @@
                         </div>
                         <div class="exhibit-detail-content">
                             <div class="exhibit-detail-image">
-                                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_interno,_sezione_archeologica_01.jpg?width=360" alt="" width="360" height="270" loading="lazy" decoding="async">
+                                <img src="images/sezione_archeologica_01.jpg" alt="أوعية ومعروضات أثرية في قاعة التاريخ" width="360" height="270" loading="lazy" decoding="async" data-i18n-alt="img.alt.pottery">
                             </div>
                             <div class="exhibit-detail-text">
                                 <p><strong data-i18n="exhibits.desc">الوصف:</strong> <span data-i18n="exhibits.pottery.d">مجموعة من الأوعية الفخارية</span></p>
@@ -141,7 +206,7 @@
                         </div>
                         <div class="exhibit-detail-content">
                             <div class="exhibit-detail-image">
-                                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_interno,_mappa_orografica_dell%27oman.jpg?width=360" alt="" width="360" height="270" loading="lazy" decoding="async">
+                                <img src="images/mappa_orografica.jpg" alt="خريطة تضاريس سلطنة عُمان داخل المتحف" width="360" height="270" loading="lazy" decoding="async" data-i18n-alt="img.alt.map">
                             </div>
                             <div class="exhibit-detail-text">
                                 <p><strong data-i18n="exhibits.desc">الوصف:</strong> <span data-i18n="exhibits.coins.d">عملات معدنية</span></p>
@@ -159,7 +224,7 @@
                         </div>
                         <div class="exhibit-detail-content">
                             <div class="exhibit-detail-image">
-                                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_cortile_02_albero_di_incenso_al_centro.jpg?width=360" alt="" width="360" height="270" loading="lazy" decoding="async">
+                                <img src="images/cortile_02_albero.jpg" alt="شجرة اللبان في فناء المتحف" width="360" height="270" loading="lazy" decoding="async" data-i18n-alt="img.alt.frank">
                             </div>
                             <div class="exhibit-detail-text">
                                 <p><strong data-i18n="exhibits.desc">الوصف:</strong> <span data-i18n="exhibits.frank.d">عينات من اللبان</span></p>
@@ -181,12 +246,17 @@
                 <div class="footer-brand">
                     <p class="logo-title" data-i18n="logo.title">متحف أرض اللبان</p>
                     <p data-i18n="footer.brand">ضمن موقع التراث العالمي لليونسكو</p>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge vision2040-badge--footer" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="" width="44" height="44" loading="lazy" decoding="async" aria-hidden="true">
+                        <span class="vision2040-label" data-i18n="vision2040.label">رؤية عُمان 2040</span>
+                    </a>
                 </div>
                 <div>
                     <h4 data-i18n="footer.explore">استكشف</h4>
                     <ul>
                         <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
                         <li><a href="visit.html" data-i18n="nav.visit">الزيارة</a></li>
+                        <li><a href="events.html" data-i18n="nav.events">الفعاليات</a></li>
                         <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
                     </ul>
                 </div>

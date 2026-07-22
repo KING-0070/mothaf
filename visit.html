@@ -15,22 +15,28 @@
     <a href="#main" class="skip-link" data-i18n="skip">تخطي إلى المحتوى</a>
 
     <div class="language-toggle" role="group" aria-label="Language">
-        <a href="#" class="lang-btn active" data-lang="ar" aria-current="true">ع</a>
-        <a href="#" class="lang-btn" data-lang="en">EN</a>
-        <a href="#" class="lang-btn" data-lang="de">DE</a>
-        <a href="#" class="lang-btn" data-lang="fr">FR</a>
-        <a href="#" class="lang-btn" data-lang="it">IT</a>
+        <button type="button" class="lang-btn active" data-lang="ar" aria-current="true">ع</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="it">IT</button>
     </div>
 
     <header class="navbar" role="banner">
         <div class="container">
-            <a href="index.html" class="logo">
+            <div class="site-brand">
                 <span class="logo-mark" aria-hidden="true">🌿</span>
-                <span class="logo-text">
-                    <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
-                    <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
-                </span>
-            </a>
+                <div class="site-brand-col">
+                    <a href="index.html" class="logo logo--text">
+                        <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
+                        <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
+                    </a>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
+                        <span class="vision2040-label" data-i18n="vision2040.label">رؤية عُمان 2040</span>
+                    </a>
+                </div>
+            </div>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
                 <span></span><span></span><span></span>
             </button>
@@ -39,6 +45,7 @@
                     <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
                     <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
                     <li><a href="visit.html" class="active" data-i18n="nav.visit">الزيارة</a></li>
+                    <li><a href="events.html" data-i18n="nav.events">الفعاليات</a></li>
                     <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
                 </ul>
             </nav>
@@ -49,7 +56,7 @@
     <main id="main">
         <section class="page-hero">
             <div class="container">
-                <h1 data-i18n="page.visit">الزيارة والتواصل</h1>
+                <h1 class="page-hero-stagger" data-i18n="page.visit">الزيارة والتواصل</h1>
             </div>
         </section>
 
@@ -115,23 +122,6 @@
             </div>
         </section>
 
-        <section class="video-section">
-            <div class="container">
-                <header class="section-header reveal">
-                    <span class="section-tag" data-i18n="video.tag">الفيديو</span>
-                    <h2 data-i18n="video.title">طريق اللبان</h2>
-                    <p data-i18n="video.intro">وثائقي عن طريق التجارة</p>
-                </header>
-                <div class="video-container reveal">
-                    <button type="button" class="video-facade" data-video-id="Zy-JTXwpgGQ" aria-label="Play video">
-                        <img src="https://i.ytimg.com/vi/Zy-JTXwpgGQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-                        <span class="video-facade-play" data-i18n="video.play">تشغيل الفيديو</span>
-                    </button>
-                </div>
-                <p class="video-note" data-i18n="video.note">BBC</p>
-            </div>
-        </section>
-
         <section class="gallery">
             <div class="container">
                 <header class="section-header reveal">
@@ -140,27 +130,27 @@
                 </header>
                 <div class="gallery-grid gallery-grid--compact">
                     <figure class="gallery-item reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_entrata.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <img src="images/entrata.jpg" alt="واجهة ومدخل متحف أرض اللبان" width="400" height="267" loading="lazy" decoding="async" data-lightbox data-i18n-alt="img.alt.entrance">
                         <figcaption data-i18n="gallery.entrance">مدخل المتحف</figcaption>
                     </figure>
                     <figure class="gallery-item reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_cortile_01.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <img src="images/cortile_01.jpg" alt="فناء المتحف في منتزه البليد الأثري" width="400" height="267" loading="lazy" decoding="async" data-lightbox data-i18n-alt="img.alt.court1">
                         <figcaption data-i18n="gallery.court">فناء المتحف</figcaption>
                     </figure>
                     <figure class="gallery-item reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_interno,_sezione_navale_02.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <img src="images/sezione_navale_02.jpg" alt="معروضات ومشاهد من قاعة البحر" width="400" height="267" loading="lazy" decoding="async" data-lightbox data-i18n-alt="img.alt.sea2">
                         <figcaption data-i18n="gallery.sea">قاعة البحر</figcaption>
                     </figure>
                     <figure class="gallery-item reveal">
-                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salalah,_museo_della_terra_degli_incensi,_stele_atterrata.jpg?width=400" alt="" width="400" height="267" loading="lazy" decoding="async" data-lightbox>
+                        <img src="images/stele_atterrata.jpg" alt="نصب أثري في منتزه البليد" width="400" height="267" loading="lazy" decoding="async" data-lightbox data-i18n-alt="img.alt.site">
                         <figcaption data-i18n="gallery.site">آثار في الموقع</figcaption>
                     </figure>
                 </div>
-                <p class="gallery-credit" data-i18n="gallery.credit">ويكيميديا كومنز</p>
+                <p class="gallery-credit" data-i18n="gallery.credit">الصور محلية من ويكيميديا كومنز — انظر images/ATTRIBUTION.md</p>
             </div>
         </section>
 
-        <section class="contact">
+        <section class="contact" id="contact">
             <div class="container">
                 <header class="section-header reveal">
                     <span class="section-tag" data-i18n="contact.tag">التواصل</span>
@@ -198,11 +188,16 @@
                 <div class="footer-brand">
                     <p class="logo-title" data-i18n="logo.title">متحف أرض اللبان</p>
                     <p data-i18n="footer.brand">ضمن موقع التراث العالمي لليونسكو</p>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge vision2040-badge--footer" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="" width="44" height="44" loading="lazy" decoding="async" aria-hidden="true">
+                        <span class="vision2040-label" data-i18n="vision2040.label">رؤية عُمان 2040</span>
+                    </a>
                 </div>
                 <div>
                     <h4 data-i18n="footer.explore">استكشف</h4>
                     <ul>
                         <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
+                        <li><a href="events.html" data-i18n="nav.events">الفعاليات</a></li>
                         <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
                     </ul>
                 </div>

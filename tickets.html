@@ -15,22 +15,28 @@
     <a href="#main" class="skip-link" data-i18n="skip">تخطي إلى المحتوى</a>
 
     <div class="language-toggle" role="group" aria-label="Language">
-        <a href="#" class="lang-btn active" data-lang="ar" aria-current="true">ع</a>
-        <a href="#" class="lang-btn" data-lang="en">EN</a>
-        <a href="#" class="lang-btn" data-lang="de">DE</a>
-        <a href="#" class="lang-btn" data-lang="fr">FR</a>
-        <a href="#" class="lang-btn" data-lang="it">IT</a>
+        <button type="button" class="lang-btn active" data-lang="ar" aria-current="true">ع</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="it">IT</button>
     </div>
 
     <header class="navbar" role="banner">
         <div class="container">
-            <a href="index.html" class="logo">
+            <div class="site-brand">
                 <span class="logo-mark" aria-hidden="true">🌿</span>
-                <span class="logo-text">
-                    <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
-                    <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
-                </span>
-            </a>
+                <div class="site-brand-col">
+                    <a href="index.html" class="logo logo--text">
+                        <span class="logo-title" data-i18n="logo.title">متحف أرض اللبان</span>
+                        <span class="logo-sub" data-i18n="logo.sub">موقع تراث عالمي · اليونسكو</span>
+                    </a>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
+                        <span class="vision2040-label" data-i18n="vision2040.label">رؤية عُمان 2040</span>
+                    </a>
+                </div>
+            </div>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
                 <span></span><span></span><span></span>
             </button>
@@ -39,6 +45,7 @@
                     <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
                     <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
                     <li><a href="visit.html" data-i18n="nav.visit">الزيارة</a></li>
+                    <li><a href="events.html" data-i18n="nav.events">الفعاليات</a></li>
                     <li><a href="tickets.html" class="active" data-i18n="nav.tickets">التذاكر</a></li>
                 </ul>
             </nav>
@@ -49,9 +56,9 @@
     <main id="main">
         <section class="page-hero page-hero--tickets">
             <div class="container">
-                <span class="section-tag" data-i18n="tickets.tag">حجز التذاكر</span>
-                <h1 data-i18n="tickets.title">احجز زيارتك</h1>
-                <p class="page-hero-lead" data-i18n="tickets.lead">احجز تذكرة الدخول مسبقاً</p>
+                <span class="section-tag page-hero-stagger" data-i18n="tickets.tag">حجز التذاكر</span>
+                <h1 class="page-hero-stagger" data-i18n="tickets.title">احجز زيارتك</h1>
+                <p class="page-hero-lead page-hero-stagger" data-i18n="tickets.lead">احجز تذكرة الدخول مسبقاً</p>
             </div>
         </section>
 
@@ -67,7 +74,7 @@
                         <li data-html="true" data-i18n="visit.tickets.v">يشمل المنتزه الأثري</li>
                         <li data-html="true" data-i18n="visit.hours.v">الأحد — الخميس 9–21</li>
                     </ul>
-                    <a href="visit.html" class="cta-btn cta-btn--outline tickets-info-link" data-i18n="hero.cta.visit">خطط زيارتك</a>
+                    <a href="visit.html" class="cta-btn tickets-info-link" data-i18n="hero.cta.visit">خطط زيارتك</a>
                 </aside>
 
                 <form class="tickets-form reveal" onsubmit="submitTicketForm(event)" novalidate>
@@ -125,12 +132,18 @@
                 <div class="footer-brand">
                     <p class="logo-title" data-i18n="logo.title">متحف أرض اللبان</p>
                     <p data-i18n="footer.brand">ضمن موقع التراث العالمي لليونسكو</p>
+                    <a href="https://www.oman2040.om/?lang=ar" class="vision2040-badge vision2040-badge--footer" target="_blank" rel="noopener noreferrer">
+                        <img src="vision2040.png" class="vision2040-logo" alt="" width="44" height="44" loading="lazy" decoding="async" aria-hidden="true">
+                        <span class="vision2040-label" data-i18n="vision2040.label">رؤية عُمان 2040</span>
+                    </a>
                 </div>
                 <div>
                     <h4 data-i18n="footer.explore">استكشف</h4>
                     <ul>
                         <li><a href="museum.html" data-i18n="nav.museum">المتحف</a></li>
                         <li><a href="visit.html" data-i18n="nav.visit">الزيارة</a></li>
+                        <li><a href="events.html" data-i18n="nav.events">الفعاليات</a></li>
+                        <li><a href="tickets.html" data-i18n="nav.tickets">التذاكر</a></li>
                     </ul>
                 </div>
             </div>
